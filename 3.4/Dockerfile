@@ -21,10 +21,6 @@ RUN apt-get -y update -qq && \
 
 WORKDIR /app
 
-# Configure postgres
-RUN echo "host all  all    0.0.0.0/0  trust" >> /etc/postgresql/11/main/pg_hba.conf && \
-    echo "listen_addresses='*'" >> /etc/postgresql/11/main/postgresql.conf
-
 # Nominatim install
 ENV NOMINATIM_VERSION v3.4.2
 RUN git clone --recursive https://github.com/openstreetmap/Nominatim ./src
@@ -42,12 +38,10 @@ COPY nominatim.conf /etc/apache2/sites-enabled/000-default.conf
 RUN curl http://www.nominatim.org/data/country_grid.sql.gz > /app/src/data/country_osm_grid.sql.gz
 RUN chmod o=rwx /app/src/build
 
-EXPOSE 5432
 EXPOSE 8080
 
 COPY start.sh /app/start.sh
 COPY startapache.sh /app/startapache.sh
-COPY startpostgres.sh /app/startpostgres.sh
 COPY init.sh /app/init.sh
 
 
