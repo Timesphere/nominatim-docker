@@ -1,4 +1,4 @@
-FROM ubuntu:eoan
+FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
