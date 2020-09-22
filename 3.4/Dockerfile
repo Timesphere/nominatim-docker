@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:eoan
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
