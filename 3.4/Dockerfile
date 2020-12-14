@@ -35,7 +35,6 @@ COPY local.php /app/src/build/settings/local.php
 COPY nominatim.conf /etc/apache2/sites-enabled/000-default.conf
 
 # Load initial data
-RUN curl http://www.nominatim.org/data/country_grid.sql.gz > /app/src/data/country_osm_grid.sql.gz
 RUN chmod o=rwx /app/src/build
 
 EXPOSE 8080
@@ -44,4 +43,4 @@ COPY start.sh /app/start.sh
 COPY startapache.sh /app/startapache.sh
 COPY init.sh /app/init.sh
 
-
+CMD [". /app/start.sh"]
